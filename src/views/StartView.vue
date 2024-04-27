@@ -1,3 +1,3 @@
 <template>
-  <h2>My old friend</h2>
+  <h2>***</h2>
 </template>
