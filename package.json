@@ -8,7 +8,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint \"src/**/*.{js,vue}\" --fix",
-    "format": "prettier .  --write"
+    "format": "prettier .  --write",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "axios": "^1.6.8",
@@ -19,6 +20,7 @@
     "@vitejs/plugin-vue": "^5.0.4",
     "eslint": "^9.1.1",
     "eslint-plugin-vue": "^9.25.0",
+    "gh-pages": "^6.1.1",
     "vite": "^5.2.0"
   }
 }
