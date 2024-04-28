@@ -2,10 +2,14 @@
 import { ref } from 'vue';
 
 const questionText = ref();
+const questionList = ref([]);
 
 function askQuestion() {
-  console.log('Вітаю, твоє 1 питання: ', questionText.value);
-  questionText.value = '';
+  if (questionText.value) {
+    console.log('Вітаю, твоє питання: ', questionText.value);
+    questionList.value = [...questionList.value, questionText.value];
+    questionText.value = '';
+  }
 }
 </script>
 
@@ -19,18 +23,26 @@ function askQuestion() {
     />
     <button @click="askQuestion">Запитати</button>
   </div>
-  <h3>Мої питання</h3>
-  <p>{{ questionText }}</p>
+  <h3>
+    Мої питання: <span v-if="questionList.length">{{ questionList.length }}</span>
+  </h3>
+  <ul class="question-list">
+    <li v-for="(question, index) in questionList" :key="index" class="question-item">
+      {{ index + 1 }} - {{ question }}
+    </li>
+  </ul>
 </template>
 
 <style scoped>
 .question-field {
-  min-width: 400px;
+  width: 600px;
+  margin: 0 auto;
   padding: 2rem;
   display: flex;
   background: #fbeaff;
   outline: 2px dashed #845ec2;
   outline-offset: -1rem;
+  box-sizing: border-box;
 }
 
 input {
@@ -51,5 +63,22 @@ button {
   &:hover {
     background: #005b44;
   }
+}
+
+.question-list {
+  width: 600px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+.question-item {
+  padding: 1rem;
+  background: #d4e5ed;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  list-style: none;
+  box-sizing: border-box;
+  text-align: left;
 }
 </style>
